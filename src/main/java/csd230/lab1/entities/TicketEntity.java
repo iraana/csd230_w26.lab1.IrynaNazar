@@ -4,6 +4,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
+import java.util.Objects;
+
 @Entity @DiscriminatorValue("TICKET")
 public class TicketEntity extends ProductEntity {
     private String description;
@@ -18,4 +20,18 @@ public class TicketEntity extends ProductEntity {
     public void setDescription(String d) { this.description = d; }
     public void setPrice(double p) { this.price = p; }
     @Override public String toString() { return "Ticket{desc='" + description + "', price=" + price + "}"; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof TicketEntity)) return false;
+        TicketEntity that = (TicketEntity) o;
+        return getId() != null && getId().equals(that.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
+
 }

@@ -4,6 +4,8 @@ import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
+
 @Entity @DiscriminatorValue("DISCMAG")
 public class DiscMagEntity extends MagazineEntity {
     private boolean hasDisc;
@@ -12,4 +14,18 @@ public class DiscMagEntity extends MagazineEntity {
     public boolean isHasDisc() { return hasDisc; }
     public void setHasDisc(boolean h) { this.hasDisc = h; }
     @Override public String toString() { return "DiscMag{disc=" + hasDisc + ", " + super.toString() + "}"; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof DiscMagEntity)) return false;
+        DiscMagEntity that = (DiscMagEntity) o;
+        return getId() != null && getId().equals(that.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
+
 }

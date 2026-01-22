@@ -5,6 +5,14 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 
+import csd230.lab1.pojos.SaleableItem;
+import jakarta.persistence.*;
+
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
 @Entity
 @Table(name = "products")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -12,7 +20,42 @@ import java.io.Serializable;
 public abstract class ProductEntity implements Serializable, SaleableItem {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToMany(mappedBy = "products")
+    private Set<CartEntity> carts = new HashSet<>();
+
+    public Set<CartEntity> getCarts() {
+        return carts;
+    }
+
+    public void setCarts(Set<CartEntity> carts) {
+        this.carts = carts;
+    }
+
+
+
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
-    @Override public String toString() { return "ProductEntity{id=" + id + "}"; }
+
+
+    @Override
+    public String toString() {
+        return "ProductEntity{" +
+                "id=" + id +
+                "} : "+super.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ProductEntity)) return false;
+        ProductEntity that = (ProductEntity) o;
+        return id != null && id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
+
 }
