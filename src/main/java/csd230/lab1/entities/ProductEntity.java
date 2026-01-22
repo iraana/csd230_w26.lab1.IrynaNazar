@@ -31,6 +31,11 @@ public abstract class ProductEntity implements Serializable, SaleableItem {
     public void setCarts(Set<CartEntity> carts) {
         this.carts = carts;
     }
+    // This allows Thymeleaf to access "${product.productType}" safely
+    public String getProductType() {
+        return this.getClass().getSimpleName();
+    }
+
 
 
 
