@@ -82,40 +82,40 @@ public class Application implements CommandLineRunner {
                 128
         );
 
-        productRepository.save(book);
-        productRepository.save(magazine);
-        productRepository.save(discMag);
-        productRepository.save(ticket);
-        productRepository.save(laptop);
-        productRepository.save(phone);
+            productRepository.save(book);
+//        productRepository.save(magazine);
+//        productRepository.save(discMag);
+//        productRepository.save(ticket);
+//        productRepository.save(laptop);
+//        productRepository.save(phone);
 
         CartEntity cart = new CartEntity();
         cartRepository.save(cart);
 
-        cart.addProduct(book);
-        cart.addProduct(magazine);
-        cart.addProduct(discMag);
-        cart.addProduct(ticket);
-        cartRepository.save(cart);
-
-        CartEntity cart2 = new CartEntity();
-        cartRepository.save(cart2);
-        cart2.addProduct(laptop);
-        cart2.addProduct(phone);
-        cartRepository.save(cart2);
-
-
-        System.out.println("\n--- ALL PRODUCTS ---");
-        List<ProductEntity> allProducts = productRepository.findAll();
-        allProducts.forEach(System.out::println);
-
-        System.out.println("\n--- CART CONTENTS ---");
-        List<CartEntity> allCarts = cartRepository.findAll();
-        for (CartEntity c : allCarts) {
-            System.out.println("Cart ID: " + c.getId());
-            for (ProductEntity p : c.getProducts()) {
-                System.out.println("  " + p);
-            }
-        }
+//        cart.addProduct(book);
+//        cart.addProduct(magazine);
+//        cart.addProduct(discMag);
+//        cart.addProduct(ticket);
+//        cartRepository.save(cart);
+//
+//        CartEntity cart2 = new CartEntity();
+//        cartRepository.save(cart2);
+//        cart2.addProduct(laptop);
+//        cart2.addProduct(phone);
+//        cartRepository.save(cart2);
+//
+//
+//        System.out.println("\n--- ALL PRODUCTS ---");
+//        List<ProductEntity> allProducts = productRepository.findAll();
+//        allProducts.forEach(System.out::println);
+//
+//        System.out.println("\n--- CART CONTENTS ---");
+//        List<CartEntity> allCarts = cartRepository.findAll();
+//        for (CartEntity c : allCarts) {
+//            System.out.println("Cart ID: " + c.getId());
+//            for (ProductEntity p : c.getProducts()) {
+//                System.out.println("  " + p);
+//            }
+//        }
     }
 }

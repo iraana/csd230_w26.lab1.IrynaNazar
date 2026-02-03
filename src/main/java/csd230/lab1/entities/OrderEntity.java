@@ -2,33 +2,58 @@ package csd230.lab1.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "cart_entity")
-public class CartEntity {
+@Table(name = "order_entity")
+public class OrderEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-    // linkedhashset for NO duplicate items
+
+    private double totalAmount;
+
+    private LocalDateTime orderDate;
+
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
-            name = "cart_products",
-            joinColumns = @JoinColumn(name = "cart_id"),
+            name = "order_products",
+            joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id")
     )
     private Set<ProductEntity> products = new LinkedHashSet<>();
-    public CartEntity() {}
+
+    public OrderEntity() {
+        this.orderDate = LocalDateTime.now();
+    }
+
     public void addProduct(ProductEntity product) {
         this.products.add(product);
-        product.getCarts().add(this); // Maintain the link on both sides
     }
+
 
     public Long getId() {
         return id;
+    }
+
+    public double getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(double totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public LocalDateTime getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(LocalDateTime orderDate) {
+        this.orderDate = orderDate;
     }
 
     public Set<ProductEntity> getProducts() {
@@ -39,14 +64,12 @@ public class CartEntity {
         this.products = products;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     @Override
     public String toString() {
-        return "CartEntity{" +
+        return "OrderEntity{" +
                 "id=" + id +
+                ", totalAmount=" + totalAmount +
+                ", orderDate=" + orderDate +
                 ", products=" + products +
                 '}';
     }
@@ -54,8 +77,8 @@ public class CartEntity {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof CartEntity)) return false;
-        CartEntity that = (CartEntity) o;
+        if (!(o instanceof OrderEntity)) return false;
+        OrderEntity that = (OrderEntity) o;
         return id != null && id.equals(that.id);
     }
 

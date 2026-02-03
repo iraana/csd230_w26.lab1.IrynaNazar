@@ -53,5 +53,8 @@
 <p>
     <a th:href="@{/books}">Continue Shopping</a>
 </p>
+<p th:unless="${cart.products.empty}">
+    <a th:href="@{/order/checkout}">Checkout</a>
+</p>
 </body>
 </html>
