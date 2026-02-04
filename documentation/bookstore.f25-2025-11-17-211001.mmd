@@ -14,6 +14,8 @@ classDiagram
     Serializable <|.. Product
     Product <-- CashTill
     Cart "0..*" -- "0..*" Product
+    Order "0..*" -- "0..*" Product
+
 
     class Product{
         -String productId
@@ -28,6 +30,15 @@ classDiagram
         +equals()
         +hashCode()
     }
+
+    class Order {
+        -Long id
+        -double totalAmount
+        -LocalDateTime orderDate
+        -Set<Product> products
+        +addProduct(Product)
+    }
+
 
     class Serializable{
         <<interface>>

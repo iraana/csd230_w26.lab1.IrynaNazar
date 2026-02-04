@@ -1,0 +1,95 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f4f8;
+    margin: 0;
+    padding: 40px;
+}
+
+/* Main page container */
+.container {
+    max-width: 900px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+h1, h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f5f5f5;
+}
+
+/* Links */
+a {
+    color: #0066cc;
+    font-weight: 500;
+}
+
+a.action {
+    padding: 6px 10px;
+    background-color: #0066cc;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-right: 6px;
+}
+
+a.action.danger {
+    background-color: #dc3545;
+}
+
+a.action.secondary {
+    background-color: #6c757d;
+}
+
+a.action:hover {
+    opacity: 0.85;
+}
+
+/* Forms */
+form {
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 12px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+}
+
+/* Buttons */
+button {
+    margin-top: 15px;
+    padding: 10px 16px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.9;
+}

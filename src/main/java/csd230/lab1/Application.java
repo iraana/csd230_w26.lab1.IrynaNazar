@@ -36,12 +36,39 @@ public class Application implements CommandLineRunner {
         Commerce cm = faker.commerce();
         com.github.javafaker.Book fakeBook = faker.book();
         String priceString = faker.commerce().price();
+        String priceString1 = faker.commerce().price();
+        String priceString2 = faker.commerce().price();
+        String priceString3 = faker.commerce().price();
 
 
         BookEntity book = new BookEntity(
                 fakeBook.title(),
                 Double.parseDouble(priceString),
                 10,
+                faker.code().isbn10(),
+                fakeBook.author()
+        );
+
+        BookEntity book1 = new BookEntity(
+                fakeBook.title(),
+                Double.parseDouble(priceString1),
+                5,
+                faker.code().isbn10(),
+                fakeBook.author()
+        );
+
+        BookEntity book2 = new BookEntity(
+                fakeBook.title(),
+                Double.parseDouble(priceString2),
+                3,
+                faker.code().isbn10(),
+                fakeBook.author()
+        );
+
+        BookEntity book3 = new BookEntity(
+                fakeBook.title(),
+                Double.parseDouble(priceString3),
+                2,
                 faker.code().isbn10(),
                 fakeBook.author()
         );
@@ -82,7 +109,10 @@ public class Application implements CommandLineRunner {
                 128
         );
 
-            productRepository.save(book);
+        productRepository.save(book);
+        productRepository.save(book1);
+        productRepository.save(book2);
+        productRepository.save(book3);
 //        productRepository.save(magazine);
 //        productRepository.save(discMag);
 //        productRepository.save(ticket);

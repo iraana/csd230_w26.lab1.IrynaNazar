@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Edit Book</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 <h1>Edit Book</h1>
@@ -13,7 +14,7 @@
     <label>Price: <input type="number" step="0.01" th:field="*{price}" required /></label><br/><br/>
     <label>Copies: <input type="number" th:field="*{copies}" required /></label><br/><br/>
 
-    <button type="submit">Update Book</button>
+    <button type="submit" class="action">Update Book</button>
 </form>
 <br/>
 <a th:href="@{/books}">Back to List</a>

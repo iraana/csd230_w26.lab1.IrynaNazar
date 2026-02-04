@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Order Confirmation</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
@@ -15,13 +16,28 @@
 
 <ul>
     <li th:each="product : ${order.products}">
-        <span th:text="${product.title}"></span> —
-        $<span th:text="${product.price}"></span>
+
+        <!-- BOOK / PUBLICATION -->
+        <span th:if="${product instanceof T(csd230.lab1.entities.PublicationEntity)}">
+            <strong th:text="${product.title}"></strong>
+            — $<span th:text="${product.price}"></span><br/>
+            <small>
+                <b>Author:</b> <span th:text="${product.author}"></span>,
+                <b>ISBN:</b> <span th:text="${product.isbn}"></span>
+            </small>
+        </span>
+
+        <!-- NON-BOOK PRODUCTS -->
+        <span th:unless="${product instanceof T(csd230.lab1.entities.PublicationEntity)}">
+            <strong th:text="${product.productType}"></strong>
+            — $<span th:text="${product.price}"></span>
+        </span>
+
     </li>
 </ul>
 
 <br/>
-<a th:href="@{/books}">Back to Shopping</a>
+<a th:href="@{/books}" class="action">Back to Shopping</a>
 
 </body>
 </html>
